@@ -1,3 +1,18 @@
+/**
+ * Santiago Vázquez - A01177850
+ * Adrian Gomez - A00835254
+ * Saul Ortega Figueroa - A01252717 
+ * v1
+ * 
+ * Fecha de creación: 20/11/2023
+ * Fecha de modificación: 22/11/2023
+ * 
+ * Descripción: 
+ * Implementación de un programa para comparar archivos mediante hashes SHA-1, SHA-256 y SHA-512
+ * Calcula los hashes de dos archivos y los compara para determinar si son iguales o no. Los 
+ * casos de prueba a utilizar nos enseñan 4 casos con diferentes tamaños de documentos y la comparación
+ * de los mismos al cambiar una letra. 
+ */
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -27,7 +42,15 @@ void comparar(string hashArchivo1, string hashArchivo2){
     }
 }
 
-//Leer contenido de archivo
+/**
+ * @brief Leer el contenido del archivo y devolverlo como una cadena
+ * 
+ * @param char nombreArchivo, nombre del archivo a leer.
+ * @return Contenido del archivo como una string
+ * 
+ * @note Complejidad de tiempo: O(n)
+ * @note Comepljidad de espacio: O(1)
+*/
 string leerArchivo(const char *nombreArchivo){
     //Definir variable para almacenar el contenido del archivo
     string contenidoArchivo;
@@ -44,7 +67,18 @@ string leerArchivo(const char *nombreArchivo){
     return contenidoArchivo;
 }
 
-//Hashear archivos
+/**
+ * @brief Calcula y compara los hashes SHA-1, SHA-256 y SHA-512 de dos archivos.
+ * 
+ * Lee el contenido de los dos archivos, calcula sus hashes utilizando SHA-1, SHA-256 y HSA-512
+ * y los compara para determinar si son iguales o diferentes
+ * 
+ * @param char nombreArchivo1, nombre del primer archivo
+ * @param char nombreArchivo2, nombre del segundo archivo
+ * 
+ * @note Complejidad de tiempo: O(n)
+ * @note Comepljidad de espacio: O(1)
+*/
 void hashear(const char* nombreArchivo1, const char* nombreArchivo2){
     //Definir variables para almacenar el contenido de los archivos
     string contenidoArchivo1, contenidoArchivo2;

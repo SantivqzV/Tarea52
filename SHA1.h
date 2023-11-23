@@ -1,3 +1,18 @@
+/**
+ * Santiago Vázquez - A01177850
+ * Adrian Gomez - A00835254
+ * Saul Ortega Figueroa - A01252717 
+ * v1
+ * 
+ * Fecha de creación: 20/11/2023
+ * Fecha de modificación: 22/11/2023
+ * 
+ * Descripción: 
+ * Este archivo contiene la implementación de la función de hash SHA-1
+ * 
+ * Demuestra el uso del algoritmo usando librerias de OPENSSL para generar un hash a partir de 
+ * la cadena dada. La función "sha1" calcula y devuelve el hash SHA-1. 
+ */
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -7,6 +22,19 @@
 
 using namespace std;
 
+
+/**
+ * @brief Calcula el hash SHA-1 de la cadena dada
+ * 
+ * Esta función inicializa una estructura SHA_CTX, procesa la cadena para calcular su SHA-1 
+ * y luego devuelve el cálculo del hash. 
+ * 
+ * @param string input, string a ser hasheado
+ * @return string con el valor del hash. 
+ * 
+ * @note Complejidad de tiempo: O(n)
+ * @note Complejidad de espacio: O(1)
+*/
 string sha1(const string& input) {
     unsigned char hash[SHA_DIGEST_LENGTH];
     SHA_CTX sha1;
