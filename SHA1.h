@@ -12,6 +12,10 @@
  * 
  * Demuestra el uso del algoritmo usando librerias de OPENSSL para generar un hash a partir de 
  * la cadena dada. La función "sha1" calcula y devuelve el hash SHA-1. 
+ *
+ * Referencias:
+ * OpenSSL Foundation, Inc. (n.d.-a). /docs/man3.0/man3/SHA1.html. https://www.openssl.org/docs/man3.0/man3/SHA1.html
+ * How to generate a SHA1 hash in C++. (2015, February 9). PragmaticJoe. https://pragmaticjoe.gitlab.io/posts/2015-02-09-how-to-generate-a-sha1-hash-in-c/
  */
 #include <iostream>
 #include <fstream>
