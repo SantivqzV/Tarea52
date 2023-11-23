@@ -5,50 +5,52 @@
 #include <openssl/evp.h>
 #include <vector>
 
+using namespace std;
+
 class User {
 public:
-    std::string username;
-    std::string passwordHash;
-    std::string salt;
+    string username;
+    string passwordHash;
+    string salt;
 };
 
 class AuthenticationSystem {
 private:
-    std::vector<User> users;
+    vector<User> users;
 
 public:
-    void registerUser(const std::string& username, const std::string& password);
-    bool authenticateUser(const std::string& username, const std::string& password);
-    std::string generateSalt();
-    std::string hashPassword(const std::string& password, const std::string& salt);
+    void registerUser(const string& username, const string& password);
+    bool authenticateUser(const string& username, const string& password);
+    string generateSalt();
+    string hashPassword(const string& password, const string& salt);
 };
 
-void AuthenticationSystem::registerUser(const std::string& username, const std::string& password) {
+void AuthenticationSystem::registerUser(const string& username, const string& password) {
     User newUser;
     newUser.username = username;
     newUser.salt = generateSalt();
     newUser.passwordHash = hashPassword(password, newUser.salt);
     users.push_back(newUser);
 
-    std::cout << "User registered successfully.\n";
+    cout << "User registered successfully.\n";
 }
 
-bool AuthenticationSystem::authenticateUser(const std::string& username, const std::string& password) {
+bool AuthenticationSystem::authenticateUser(const string& username, const string& password) {
     for (const auto& user : users) {
         if (user.username == username) {
-            std::string hashedPasswordAttempt = hashPassword(password, user.salt);
+            string hashedPasswordAttempt = hashPassword(password, user.salt);
             return (hashedPasswordAttempt == user.passwordHash);
         }
     }
     return false;
 }
 
-std::string AuthenticationSystem::generateSalt() {
+string AuthenticationSystem::generateSalt() {
     const int saltSize = 16;
     unsigned char buffer[saltSize];
     RAND_bytes(buffer, saltSize);
 
-    std::string salt;
+    string salt;
     for (int i = 0; i < saltSize; ++i) {
         salt += buffer[i];
     }
@@ -56,18 +58,18 @@ std::string AuthenticationSystem::generateSalt() {
     return salt;
 }
 
-std::string AuthenticationSystem::hashPassword(const std::string& password, const std::string& salt) {
+string AuthenticationSystem::hashPassword(const string& password, const string& salt) {
     const int iterations = 10000; // Number of iterations for stretching
     const EVP_MD* md = EVP_sha256();
 
-    std::string dataToHash = password + salt;
+    string dataToHash = password + salt;
     unsigned char hashedPassword[SHA256_DIGEST_LENGTH];
 
     PKCS5_PBKDF2_HMAC(password.c_str(), password.length(), 
                       reinterpret_cast<const unsigned char*>(salt.c_str()), salt.length(),
                       iterations, md, SHA256_DIGEST_LENGTH, hashedPassword);
 
-    std::string hashedPasswordStr;
+    string hashedPasswordStr;
     for (int i = 0; i < SHA256_DIGEST_LENGTH; ++i) {
         char buf[3];
         sprintf(buf, "%02x", hashedPassword[i]);
@@ -84,19 +86,19 @@ int main() {
     authSystem.registerUser("usuario1", "contraseña123");
 
     // Intento de autenticación
-    std::string usernameAttempt;
-    std::string passwordAttempt;
+    string usernameAttempt;
+    string passwordAttempt;
 
-    std::cout << "Ingrese el nombre de usuario: ";
-    std::cin >> usernameAttempt;
+    cout << "Ingrese el nombre de usuario: ";
+    cin >> usernameAttempt;
 
-    std::cout << "Ingrese la contraseña: ";
-    std::cin >> passwordAttempt;
+    cout << "Ingrese la contraseña: ";
+    cin >> passwordAttempt;
 
     if (authSystem.authenticateUser(usernameAttempt, passwordAttempt)) {
-        std::cout << "Inicio de sesión exitoso.\n";
+        cout << "Inicio de sesión exitoso.\n";
     } else {
-        std::cout << "Nombre de usuario o contraseña incorrectos.\n";
+        cout << "Nombre de usuario o contraseña incorrectos.\n";
     }
 
     return 0;
