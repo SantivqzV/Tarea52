@@ -96,16 +96,37 @@ void AuthenticationSystem::registerUser(const string& username, const string& pa
  * 
  * @note Complejidad de tiempo: O(n*m) - n es el número de usuarios y m la longitud de la contraseña.
  * @note Complejidad de espacio: O(1) - uso de memoria constante.
- */
+ *
+ *   bool AuthenticationSystem::authenticateUser(const string& username, const string& password) {
+        for (const auto& user : users) {
+            if (user.username == username) {
+                string hashedPasswordAttempt = hashPassword(password, user.salt);
+                return (hashedPasswordAttempt == user.passwordHash);
+            }
+        }
+        return false;
+    }
+*/
 bool AuthenticationSystem::authenticateUser(const string& username, const string& password) {
     for (const auto& user : users) {
         if (user.username == username) {
-            string hashedPasswordAttempt = hashPassword(password, user.salt);
-            return (hashedPasswordAttempt == user.passwordHash);
+            // Hashea la contraseña proporcionada para compararla con la almacenada
+            std::string hashedPasswordAttempt = hashPassword(password, user.salt);
+
+            // Compara las contraseñas hasheadas
+            if (hashedPasswordAttempt == user.passwordHash) {
+                std::cout << "Inicio de sesión exitoso.\n";
+                std::cout << "Contraseña Login hasheada: " << user.passwordHash << "\n";
+                std::cout << "Contraseña Registro hasheada: " << hashedPasswordAttempt << "\n";
+                return true;
+            } else {
+                std::cout << "Contraseña incorrecta para el usuario: " << username << "\n";
+                std::cout << "Contraseña hasheada: " << hashedPasswordAttempt << "\n";
+                return false;
+            }
         }
     }
-    return false;
-}
+
 
 /**
  * @brief Genera una cadena de sal aleatoria.
