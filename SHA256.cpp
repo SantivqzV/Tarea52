@@ -97,15 +97,6 @@ void AuthenticationSystem::registerUser(const string& username, const string& pa
  * @note Complejidad de tiempo: O(n*m) - n es el número de usuarios y m la longitud de la contraseña.
  * @note Complejidad de espacio: O(1) - uso de memoria constante.
  *
- *   bool AuthenticationSystem::authenticateUser(const string& username, const string& password) {
-        for (const auto& user : users) {
-            if (user.username == username) {
-                string hashedPasswordAttempt = hashPassword(password, user.salt);
-                return (hashedPasswordAttempt == user.passwordHash);
-            }
-        }
-        return false;
-    }
 */
 bool AuthenticationSystem::authenticateUser(const string& username, const string& password) {
     for (const auto& user : users) {
@@ -126,7 +117,8 @@ bool AuthenticationSystem::authenticateUser(const string& username, const string
             }
         }
     }
-
+    return false;
+}
 
 /**
  * @brief Genera una cadena de sal aleatoria.
@@ -184,7 +176,7 @@ string AuthenticationSystem::hashPassword(const string& password, const string& 
     return hashedPasswordStr;
 }
 
-int main() {
+int main(){
     AuthenticationSystem authSystem;
 
     // Registro de usuario
