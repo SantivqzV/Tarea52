@@ -12,7 +12,12 @@
  * hashing de contraseñas con sal y estiramiento de claves. Este código contiene métodos para
  * registrar y autenticar el usuario al igual que utiliza el hash de tipo SHA256 para 
  * asegurar la seguridad de la información sensible de los usuarios como lo es la contraseña. 
- * 
+ *
+ * Referencias:
+ * How to include OpenSSL in Visual Studio. (n.d.). Stack Overflow. https://stackoverflow.com/questions/32156336/how-to-include-openssl-in-visual-studio
+ * OpenSSL Foundation, Inc. (n.d.). /source/index.html. https://www.openssl.org/source/
+ * Mutual authentication always succeeds with OpenSSL. (n.d.). Stack Overflow. https://stackoverflow.com/questions/28392273/mutual-authentication-always-succeeds-with-openssl
+ * https://chat.openai.com/share/0b09d2dc-2647-43db-b915-b9975edf79d9
  */
 #include <iostream>
 #include <cstring>
