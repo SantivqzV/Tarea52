@@ -11,6 +11,9 @@
  * Este archivo incluye la implementación de una función para calcular el hash SHA-256 de una 
  * string dada. La función convierte la cadena en un hash de tipo SHA-256 y lo devuelve.
  * 
+ * Referencias:
+ * Code Generator. (n.d.). https://codepal.ai/code-generator/query/4m2TSL9C/c-sha256-hash-function
+ * Generate sha256 with OpenSSL and C++. (n.d.). Stack Overflow. https://stackoverflow.com/questions/2262386/generate-sha256-with-openssl-and-c
  */
 #include <iostream>
 #include <fstream>
