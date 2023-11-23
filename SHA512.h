@@ -10,6 +10,10 @@
  * Descripción: 
  * Este archivo incluye la implementación de una función para calcular el hash SHA-512 de una 
  * string dada. La función convierte la cadena en un hash de tipo SHA-512 y lo devuelve.
+ * 
+ * Referencias:
+ * https://stackoverflow.com/questions/59112701/sha512-c-program-using-the-openssl-library
+ * OpenSSL Foundation, Inc. (n.d.-a). /docs/man1.0.2/man3/SHA512.html. https://www.openssl.org/docs/man1.0.2/man3/SHA512.html
  */
 #include <iostream>
 #include <fstream>
